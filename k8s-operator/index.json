@@ -18,8 +18,24 @@
       "text": "main.md"
     },
     {
-      "title": "Step 2 - Initialize your own API",
+      "title": "Step 4 - Initialize your own API",
       "text": "create_api.md"
+    },
+    {
+      "title": "Step 5 - Desing your own API",
+      "text": "design_api.md"
+    },
+    {
+      "title": "Step 6 - Inspect a controller",
+      "text": "inspect_controller.md"
+    },
+    {
+      "title": "Step 7 - Implementing cronjob controller",
+      "text": "implementing_controller.md"
+    },
+    {
+      "title": "Step 8 - Test your newly created API",
+      "text": "test_your_project.md"
     }
   ],
     "intro": {

@@ -1,8 +1,8 @@
-# Project initialization
-
 ## Initialize a kubebuilder project
 
+
 ```bash
+
 mkdir k8s-operator-tutorial
 cd k8s-operator-tutorial
 

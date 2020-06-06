@@ -1,8 +1,9 @@
-# Prepare the environment
 ## Deploy a local k8s cluster with k3d
 
 ```bash
-
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
 curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1.7.0 bash
 k3d create --workers 2
 ```

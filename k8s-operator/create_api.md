@@ -1,4 +1,3 @@
-# Create you own API with resource and controller
 
 ## Template for you API 
 
