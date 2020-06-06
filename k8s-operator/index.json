@@ -47,7 +47,7 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal",
+    "uilayout": "terminal",
     "showide": true
   },
   "backend": {
