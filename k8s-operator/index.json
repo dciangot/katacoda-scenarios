@@ -28,18 +28,6 @@
     {
       "title": "Step 6 - Inspect a controller",
       "text": "inspect_controller.md"
-    },
-    {
-      "title": "Step 7a - Implementing cronjob controller",
-      "text": "implementing_controller.md"
-    },
-    {
-      "title": "Step 7b - Implementing cronjob controller",
-      "text": "implementing_controller_2.md"
-    },
-    {
-      "title": "Step 8 - Test your newly created API",
-      "text": "test_your_project.md"
     }
   ],
     "intro": {
