@@ -4,7 +4,7 @@ From https://book.kubebuilder.io/cronjob-tutorial/controller-implementation.html
 
 > We’ll start out with some imports. You’ll see below that we’ll need a few more imports than those scaffolded for us. We’ll talk about each one when we use it.
 
-<pre><code class="go">
+<pre><code class="Go">
 package controllers
 
 import (
