@@ -4,7 +4,7 @@
 
 >We can check if a job is “finished” and whether it succeeded or failed using status conditions. We’ll put that logic in a helper to make our code cleaner.
 
-```go
+<pre><code class="go">
     // find the active list of jobs
     var activeJobs []*kbatch.Job
     var successfulJobs []*kbatch.Job
@@ -81,7 +81,7 @@
         log.Error(err, "unable to update CronJob status")
         return ctrl.Result{}, err
     }
-```
+</code></pre>
 
 
 ## Get the next scheduled run
@@ -92,7 +92,7 @@
 
 >Otherwise, we’ll just return the missed runs (of which we’ll just use the latest), and the next run, so that we can know when it’s time to reconcile again.
 
-```go
+<pre><code class="go">
     getNextSchedule := func(cronJob *batch.CronJob, now time.Time) (lastMissed time.Time, next time.Time, err error) {
         sched, err := cron.ParseStandard(cronJob.Spec.Schedule)
         if err != nil {
@@ -154,20 +154,20 @@
         // fixes the schedule, so don't return an error
         return ctrl.Result{}, nil
     }
-```
+</code></pre>
 
 > We’ll prep our eventual request to requeue until the next job, and then figure out if we actually need to run.
 
-```go
+<pre><code class="go">
     scheduledResult := ctrl.Result{RequeueAfter: nextRun.Sub(r.Now())} // save this so we can re-use it elsewhere
     log = log.WithValues("now", r.Now(), "next run", nextRun)
-```
+</code></pre>
 
 ## Run a new job if it’s on schedule, not past the deadline, and not blocked by our concurrency policy
 
 > If we’ve missed a run, and we’re still within the deadline to start it, we’ll need to run a job.
 
-```go
+<pre><code class="go">
     if missedRun.IsZero() {
         log.V(1).Info("no upcoming scheduled times, sleeping until next")
         return scheduledResult, nil
@@ -203,11 +203,11 @@
             }
         }
     }
-```
+</code></pre>
 
 And finally let's create our job object
 
-```go
+<pre><code class="go">
 constructJobForCronJob := func(cronJob *batch.CronJob, scheduledTime time.Time) (*kbatch.Job, error) {
         // We want job names for a given nominal start time to have a deterministic name to avoid the same job being created twice
         name := fmt.Sprintf("%s-%d", cronJob.Name, scheduledTime.Unix())
@@ -250,7 +250,7 @@ constructJobForCronJob := func(cronJob *batch.CronJob, scheduledTime time.Time) 
 
     log.V(1).Info("created Job for CronJob run", "job", job)
     return scheduledResult, nil
-```
+</code></pre>
 
 ## Setup
 
@@ -258,7 +258,7 @@ Finally, we’ll update our setup. In order to allow our reconciler to quickly l
 
 Additionally, we’ll inform the manager that this controller owns some Jobs, so that it will automatically call Reconcile on the underlying CronJob when a Job changes, is deleted, etc.
 
-```go
+<pre><code class="go">
 var (
     jobOwnerKey = ".metadata.controller"
     apiGVStr    = batch.GroupVersion.String()
@@ -293,4 +293,4 @@ func (r *CronJobReconciler) SetupWithManager(mgr ctrl.Manager) error {
         Owns(&kbatch.Job{}).
         Complete(r)
 }
-```
+</code></pre>
