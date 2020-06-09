@@ -3,6 +3,6 @@
 
 ```bash
 kubebuilder create api --group batch --version v1 --kind SumJob
-```{{copy}}
+```{{execute}}
 
 https://book.kubebuilder.io/cronjob-tutorial/new-api.html

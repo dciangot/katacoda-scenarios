@@ -11,7 +11,16 @@ make run ENABLE_WEBHOOKS=false
 
 >At this point, we need a SumJob to test with. Let’s write a sample to `config/samples/batch_v1_sumjob.yaml`, and use that:
 
-<script src="https://gist.github.com/dciangot/a83c4ba4f8cf7f87e5417b06b36c30ed.js"></script>
+```
+apiVersion: batch.tutorial.kubebuilder.io/v1
+kind: SumJob
+metadata:
+  name: sumjob-sample2
+spec:
+  # Add fields here
+  A: 11
+  B: 15
+```{{copy}}
 
 Then simply create our custom resource:
 
