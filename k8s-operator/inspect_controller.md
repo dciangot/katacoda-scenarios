@@ -2,7 +2,7 @@
 
 From: https://book.kubebuilder.io/cronjob-tutorial/controller-overview.html
 
-<pre><code class="language-go">
+<pre><code>
 package controllers
 
 import (
