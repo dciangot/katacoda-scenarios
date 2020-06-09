@@ -8,13 +8,7 @@ curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1
 k3d create --workers 2
 ```{{execute}}
 
-## Install go and kubebuilder
-
-```bash
-wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/bin:/usr/local/go/bin
-```{{execute}}
+## Install kubebuilder
 
 ```bash
 os=$(go env GOOS)
