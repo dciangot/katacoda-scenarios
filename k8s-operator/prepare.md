@@ -6,14 +6,7 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1.7.0 bash
 k3d create --workers 2
-```{{copy}}
-
-Wait a couple of minutes and then you should see the deployment succeeding:
-
-```bash
-export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
-kubectl get node
-```{{copy}}
+```{{execute}}
 
 ## Install go and kubebuilder
 
@@ -21,7 +14,7 @@ kubectl get node
 wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/bin:/usr/local/go/bin
-```{{copy}}
+```{{execute}}
 
 ```bash
 os=$(go env GOOS)
@@ -30,5 +23,13 @@ curl -L https://go.kubebuilder.io/dl/2.3.1/${os}/${arch} | tar -xz -C /tmp/
 
 sudo mv /tmp/kubebuilder_2.3.1_${os}_${arch} /usr/local/kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
-```{{copy}}
+```{{execute}}
 
+## Finally check the installation
+
+Wait a couple of minutes and then you should see the deployment succeeding:
+
+```bash
+export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
+kubectl get node
+```{{execute}}

@@ -26,9 +26,14 @@
       "text": "design_api.md"
     },
     {
-      "title": "Step 6 - Inspect a controller",
+      "title": "Step 6 - Setup a controller",
       "text": "inspect_controller.md"
+    },
+    {
+      "title": "Step 7 - Test the controller in function",
+      "text": "test_your_project.md"
     }
+
   ],
     "intro": {
       "text": "intro.md",

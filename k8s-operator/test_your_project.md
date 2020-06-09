@@ -9,36 +9,17 @@ make install
 make run ENABLE_WEBHOOKS=false
 ```
 
->At this point, we need a CronJob to test with. Let’s write a sample to `config/samples/batch_v1_cronjob.yaml`, and use that:
+>At this point, we need a SumJob to test with. Let’s write a sample to `config/samples/batch_v1_sumjob.yaml`, and use that:
 
-```yaml
-apiVersion: batch.tutorial.kubebuilder.io/v1
-kind: CronJob
-metadata:
-  name: cronjob-sample
-spec:
-  schedule: "*/1 * * * *"
-  startingDeadlineSeconds: 60
-  concurrencyPolicy: Allow # explicitly specify, but Allow is also default.
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: hello
-            image: busybox
-            args:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
-          restartPolicy: OnFailure
-```
+<script src="https://gist.github.com/dciangot/a83c4ba4f8cf7f87e5417b06b36c30ed.js"></script>
+
+Then simply create our custom resource:
 
 ```bash
 kubectl create -f config/samples/batch_v1_cronjob.yaml
 ```
 
-Check you jobs with:
+Check your jobs with:
 
 ```bash
 kubectl get cronjob.batch.tutorial.kubebuilder.io -o yaml
