@@ -6,7 +6,6 @@ https://book.kubebuilder.io/cronjob-tutorial/running.html
 
 ```bash
 make install
-make run ENABLE_WEBHOOKS=false
 ```
 
 >At this point, we need a SumJob to test with. Let’s write a sample to `config/samples/batch_v1_sumjob.yaml`, and use that:
@@ -26,12 +25,23 @@ Then simply create our custom resource:
 
 ```bash
 kubectl create -f config/samples/batch_v1_cronjob.yaml
-```
+```{{copy}}
 
-Check your jobs with:
+Check that the resource has been created
 
 ```bash
-kubectl get cronjob.batch.tutorial.kubebuilder.io -o yaml
-kubectl get job
-```
+kubectl get sumjob
+```{{copy}}
+
+Execute one reconcile cycle, then press Ctrl+C to exit:
+
+```bash
+make run ENABLE_WEBHOOKS=false
+```{{copy}}
+
+Check your job with:
+
+```bash
+kubectl describe sumjob sumjob-sample2
+```{{copy}}
 
